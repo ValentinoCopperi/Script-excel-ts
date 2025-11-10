@@ -1,0 +1,22 @@
+Script Overview
+---------------
+
+Purpose
+- Processes an Excel file, normalizes customer data, and produces a summary JSON report.
+
+Main flow
+- `main` parses CLI arguments, creates an `ExcelProcessor`, and calls `process`.
+- `process` validates the path, loads the worksheet, extracts rows, normalizes records, and builds a statistical summary.
+- When records pass validation, `exportResults` saves normalized data and summary JSON files in the target folder.
+
+Key components
+- `Logger`: prints color-coded messages with emojis for info, warnings, errors, and successes; can be silenced except for errors.
+- `ExcelProcessor`: orchestrates Excel loading and data transformation, including checks, normalization, and aggregations.
+- Normalization: coerces strings, numbers, and dates into consistent types while discarding incomplete rows.
+- Summary: computes totals, counts invalid rows, aggregates revenue by country, averages age, and ranks the top five customers by revenue.
+
+CLI usage
+- `ts-node script.ts file.xlsx [--output=folder] [--silent]`
+- `--output` selects the destination directory (defaults to the source file directory).
+- `--silent` suppresses non-error logs.
+
